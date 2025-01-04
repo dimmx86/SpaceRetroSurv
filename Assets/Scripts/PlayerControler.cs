@@ -16,11 +16,15 @@ public class PlayerControler : MonoBehaviour
     private void InitInput()
     {
         joystick.OnInput.AddListener(mover.AddDirection);
+        joystick.OnEndInput.AddListener(mover.StopForce);
+        joystick.OnBeginInput.AddListener(mover.StartForce);
     }
 
     private void InputDisable()
     {
         joystick.OnInput.RemoveListener(mover.AddDirection);
+        joystick.OnEndInput.RemoveListener(mover.StopForce);
+        joystick.OnBeginInput.RemoveListener(mover.StartForce);
 
     }
 
