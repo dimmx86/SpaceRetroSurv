@@ -19,7 +19,7 @@ public class PlayerMover : MonoBehaviour
 
     public void StartForce(Vector2 vectorForce) 
     {
-        isForce = true;
+        isForce = false;
     }
 
     public void StopForce(Vector2 vectorForce)
@@ -36,7 +36,8 @@ public class PlayerMover : MonoBehaviour
             isForce = true;
             Vector2 directionUp = new Vector2(transform.up.x, transform.up.y);
             if ((vectorForce.normalized + directionUp).magnitude < sqrt2)
-                isUpDirection = true;           
+                isUpDirection = true;
+            else isUpDirection = false;
         }
         else
         {
@@ -52,14 +53,14 @@ public class PlayerMover : MonoBehaviour
         {
             float force = direction.magnitude;
             if (isUpDirection)
-            { AddForce(force); }
-            else
             { AddForce(-force); }
+            else
+            { AddForce(force); }
         }
     }
 
     private void AddForce(float force)
     {
-        Rigidbody.AddForce(transform.up * force * curontyForceMult * Time.deltaTime);
+        Rigidbody.AddForce(transform.up * force * curontyForceMult * Time.fixedDeltaTime);
     }
 }
