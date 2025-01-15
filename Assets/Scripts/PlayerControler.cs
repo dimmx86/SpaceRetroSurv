@@ -9,7 +9,7 @@ public class PlayerControler : MonoBehaviour
 
     private void Awake()
     {
-        mover.Init(rigidbody);
+        mover.Init(rigidbody, transform);
         InitInput();
     }
 
